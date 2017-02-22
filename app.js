@@ -65,8 +65,30 @@ app.get("/world",function(req,res){
        var a = dust.v;
        console.log("pm10:" + a);
 
+      if(a < 30)
+      {
+        result["grade"] = "좋음";
+      }
+      else if (31 < a < 80)
+      {
+        result["grade"] = "보통";
+      }
+      else if (81 < a < 120)
+      {
+        result["grade"] = "약간 나쁨";
+      }
+      else if (121 < a < 200)
+      {
+        result["grade"] = "나쁨";
+      }
+      else {
+        result["grade"] = "매우 나쁨";
+      }
+
        var result = {};
        result["value"] = a;
+
+
 
        res.json(result);
        return;

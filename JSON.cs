@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using LitJson;
 
 public class JSON : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		string url = "http://easyfinder.azurewebsites.net/weather";
+		string url = "http://easyfinder.azurewebsites.net/call";
 		WWW www = new WWW (url);
 		StartCoroutine (WaitForRequest (www));
 	}
@@ -19,14 +20,33 @@ public class JSON : MonoBehaviour {
 		if (www.error == null)
 		{
 			Debug.Log("WWW Ok!: " + www.text);
-			string data = www.text;
-			string[] arr = data.Split(':');
-			string a = arr [1].Substring (1, 2);
-			Debug.Log ("RESULT DATA: " + a);
 
+			string value = makevalue (www.text);
+			string grade = makegrade (www.text);
 
+			float resultValue = float.Parse (value);
+			Debug.Log ("Value :" + resultValue + "/n" + "Grade: " + grade);
+
+		
 		} else {
 			Debug.Log("WWW Error: "+ www.error);
 		}    
 	}
+	private string makevalue(string jsonString)
+	{
+		JsonData jsonPlayer = JsonMapper.ToObject (jsonString);
+		string value = jsonPlayer ["value"].ToString();
+
+		return value;
+	}
+	private string makegrade(string jsonString)
+	{
+		JsonData jsonPlayer = JsonMapper.ToObject (jsonString);
+		string grade = jsonPlayer ["grade"].ToString();
+
+		return grade;
+	}
+
+
+
 }

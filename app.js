@@ -2,12 +2,51 @@ var express = require('express');
 var app = express();
 var fs = require("fs");
 var http = require("http");
+
+var badDustContition = 80;
+
 var bodyParser = require('body-parser');
+/*
 var config = require('./config/config');
 var parseString = require('xml2js').parseString;
 
 var parse = require('xml-parser');
 var inspect = require('util').inspect;
+*/
+
+app.get("/call",function(req,res)
+{
+  var request = require("request");
+
+  var fetch_options = {
+    url: "http://apis.skplanetx.com/weather/dust?lon=126.9658000000&stnid=&lat=37.5714000000&version=1",
+    headers: {
+        "x-skpop-userId": "myungjin" ,
+        "Accept": "application/json" ,
+        "Accept-Language" : "ko_KR",
+        "appKey": "16638033-8a90-3674-bf00-916c8d800a7a"
+    }
+  }
+
+  request.get(fetch_options,function(error, response, body){
+    if (!error && response.statusCode == 200) {
+      var info  = JSON.parse(body);
+      var dust = info.weather.dust;
+      var timeObservation = dust[0].timeObservation;
+      var value = dust[0].pm10.value;
+      var grade = dust[0].pm10.grade;
+
+      console.log("value :" + value + "\n" + "grade :" + grade);
+      var result = {};
+
+      result["value"] = value;
+      result["grade"] = grade;
+
+      res.json(result);
+    }
+});
+});
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
@@ -396,6 +435,6 @@ app.delete('/chat_room/:user_key',function(req, res){
 
 
 
-var server = app.listen(config.port, function(){
+var server = app.listen("3000", function(){
   console.log("Run at http://localhost:3000");
 });

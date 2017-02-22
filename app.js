@@ -19,9 +19,9 @@ app.get("/call",function(req,res)
   var request = require("request");
 
   var fetch_options = {
-    url: "http://apis.skplanetx.com/weather/dust?lon=126.9658000000&stnid=&lat=37.5714000000&version=1",
-    headers: {
-        "x-skpop-userId": "myungjin" ,
+    url: "http://apis.skplanetx.com/weather/airquality/current?lon=120&lat=40&version=1",
+        headers: {
+        "x-skpop-userId": "reki318@naver.com" ,
         "Accept": "application/json" ,
         "Accept-Language" : "ko_KR",
         "appKey": "16638033-8a90-3674-bf00-916c8d800a7a"
@@ -31,6 +31,8 @@ app.get("/call",function(req,res)
   request.get(fetch_options,function(error, response, body){
     if (!error && response.statusCode == 200) {
       var info  = JSON.parse(body);
+      console.log(info);
+
       var dust = info.weather.dust;
       var timeObservation = dust[0].timeObservation;
       var value = dust[0].pm10.value;
@@ -42,11 +44,34 @@ app.get("/call",function(req,res)
       result["value"] = value;
       result["grade"] = grade;
 
-      res.json(result);
+      res.end();
     }
 });
 });
 
+app.get("/world",function(req,res){
+  var request = require('request');
+  var country = req.param('country');
+  var url = "http://api.waqi.info/feed/"+ country +"/?token=011ca88ea405df5b9438fd24239d2a150eeb6be9";
+
+  console.log(url);
+
+  request({
+      url: url ,
+      method: 'GET'
+  }, function (error, response, body) {
+       var info  = JSON.parse(body);
+       var dust = info.data.iaqi.pm10;
+       var a = dust.v;
+       console.log("pm10:" + a);
+
+       var result = {};
+       result["value"] = a;
+
+       res.json(result);
+       return;
+    });
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());

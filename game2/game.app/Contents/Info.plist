@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>game</string>
+	<key>CFBundleGetInfoString</key>
+	<string>Unity Player version 5.6.0b3 (358ff4ed3952). (c) 2016 Unity Technologies ApS. All rights reserved.</string>
+	<key>CFBundleIconFile</key>
+	<string>PlayerIcon.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>unity.DefaultCompany.game2</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>game2</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>Unity Player version 5.6.0b3</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>5.6.0b3</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>PlayerApplication</string>
+	<key>UnityBuildNumber</key>
+	<string>358ff4ed3952</string>
+</dict>
+</plist>

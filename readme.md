@@ -1,10 +1,10 @@
-#Natural Fighter
+# Natural Fighter
 
 각 국의 미세먼지 데이터를 받아와서 미세먼지 농도에 따라 게임 난이도가 달라지는 타워 디펜스 게임
 ----------------------------------------------
 
 
-##Game Description
+## Game Description
 
 1.사용자가 선택한 도시에 따라서 환경요소가 다 다르며 이것을 통해 게임 난이도도 결정된다.
 
@@ -20,7 +20,7 @@
 
 7.Microsoft Azure기반으로 서버를 만들어서 사용자 닉네임과 랭킹을 관리한다.
 
-##Screen shot
+## Screen shot
 
 ![Alt text](/image/1.png)
 ![Alt text](/image/2.png)
